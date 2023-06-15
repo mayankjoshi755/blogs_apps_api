@@ -2,9 +2,7 @@ package com.blogs_apps_api.contoller;
 
 import com.blogs_apps_api.payloads.ApiResponse;
 import com.blogs_apps_api.payloads.CategoryDto;
-import com.blogs_apps_api.payloads.UserDto;
 import com.blogs_apps_api.services.CategoryService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
