@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -24,14 +26,13 @@ public class Post {
 
     private String imageName;
 
-    private String addedDate;
+    private Date addedDate;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    private Categories categories;
+    private Category category;
 
     @ManyToOne
     private User user;
-
 
 }

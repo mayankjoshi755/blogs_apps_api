@@ -16,7 +16,7 @@ public class CategoryDto {
     private Integer categoryId;
     @NotBlank
     @Size(min = 4 , message = "Name should be at least 4 letters")
-    private  String categoryName;
+    private  String categoryTitle;
 
     @NotBlank
     @Size(min = 4, message = "Name should be at least 4 letters")
