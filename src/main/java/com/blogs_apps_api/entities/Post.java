@@ -21,7 +21,7 @@ public class Post {
     private Integer postId;
 
     private String title;
-
+@Column(name = "content")
     private String content;
 
     private String imageName;

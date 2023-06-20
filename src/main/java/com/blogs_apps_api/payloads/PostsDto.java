@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class PostsDto {
+    private Integer postId;
     private String title;
     private String content;
     private String imageName;

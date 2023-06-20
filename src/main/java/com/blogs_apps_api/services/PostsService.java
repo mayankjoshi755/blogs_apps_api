@@ -1,6 +1,9 @@
 package com.blogs_apps_api.services;
 
+import com.blogs_apps_api.payloads.PostResponse;
 import com.blogs_apps_api.payloads.PostsDto;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ public interface PostsService {
 
     // Get All
 
-    List<PostsDto> getAllPost();
+    PostResponse getAllPost(Integer pageNumber , Integer pageSize,String sortBy,String sortDir);
 
     // Get
 
@@ -31,8 +34,11 @@ public interface PostsService {
     // get all post by user
     List<PostsDto> getAllPostByUser (Integer userId);
 
-    // Search
     List<PostsDto> searchPost(String keyword);
+
+    List<PostsDto> searchPosts(String keyword);
+
+
 
 
 }
