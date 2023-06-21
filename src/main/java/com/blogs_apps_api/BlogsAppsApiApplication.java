@@ -4,17 +4,21 @@ import com.blogs_apps_api.payloads.PostsDto;
 import com.blogs_apps_api.repositories.PostsRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
 @SpringBootApplication
-public class BlogsAppsApiApplication {
+public class BlogsAppsApiApplication implements CommandLineRunner {
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlogsAppsApiApplication.class, args);
@@ -28,4 +32,8 @@ public class BlogsAppsApiApplication {
 	}
 
 
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(this.passwordEncoder.encode("abc"));
+	}
 }
