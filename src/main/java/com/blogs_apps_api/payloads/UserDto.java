@@ -1,5 +1,6 @@
 package com.blogs_apps_api.payloads;
 
+import com.blogs_apps_api.entities.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,5 +28,7 @@ public class UserDto {
     private String password;
     @NotNull
     private String about;
+
+    private Set<RoleDto> roles = new HashSet<>();
 
 }

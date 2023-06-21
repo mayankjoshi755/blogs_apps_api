@@ -1,12 +1,16 @@
 package com.blogs_apps_api.services.Impl;
 
+import com.blogs_apps_api.config.AppConstants;
+import com.blogs_apps_api.entities.Role;
 import com.blogs_apps_api.entities.User;
 import com.blogs_apps_api.globalExceptions.ResourceNotFoundException;
 import com.blogs_apps_api.payloads.UserDto;
+import com.blogs_apps_api.repositories.RoleRepo;
 import com.blogs_apps_api.repositories.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.blogs_apps_api.services.UserService;
 
@@ -20,6 +24,24 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+    @Override
+    public UserDto registerUser(UserDto userDto) {
+        User user = this.modelMapper.map(userDto,User.class);
+        user.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
+
+        // roles set to new user by default
+        Role role = this.roleRepo.findById(AppConstants.NORMAL_USER).get();
+        user.getRoles().add(role);
+       User newUser = this.userRepo.save(user);
+
+        return this.modelMapper.map(newUser , UserDto.class);
+    }
 
     @Override
     public UserDto createUser(UserDto userDto) {

@@ -39,7 +39,8 @@ public class SecurityConfig
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                        .antMatchers("/api/v1/auth/login").permitAll()
+//                        .antMatchers("/api/v1/auth/login").permitAll()
+                        .antMatchers("/api/v1/auth/**").permitAll() // Allow all api after api/v1/auth
                         .antMatchers(HttpMethod.GET).permitAll() //Allow all get api without any security
                 .anyRequest()
                 .authenticated()
