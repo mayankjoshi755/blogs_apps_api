@@ -1,5 +1,6 @@
 package com.blogs_apps_api.contoller;
 
+import com.blogs_apps_api.globalExceptions.ApiException;
 import com.blogs_apps_api.payloads.JWTAuthRequest;
 import com.blogs_apps_api.payloads.JWTAuthResponse;
 import com.blogs_apps_api.security.JWTTokenHelper;
@@ -40,7 +41,7 @@ public class AuthController {
 
     }
 
-    private void authenticate(String email, String password) throws Exception {
+    private void authenticate(String email, String password) throws ApiException {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email,password);
         try {
             this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
@@ -48,7 +49,7 @@ public class AuthController {
         catch (Exception e) // BADCredentialException
         {
             System.out.println("Exception occurred on authenticate method of AuthController");
-            throw new Exception("Invalid user name or password");
+            throw new ApiException("Invalid user name or password ...");
         }
     }
 }

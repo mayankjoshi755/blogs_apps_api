@@ -5,6 +5,7 @@ import com.blogs_apps_api.payloads.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.blogs_apps_api.services.UserService;
 
@@ -45,6 +46,9 @@ public class UserController {
         return ResponseEntity.ok(this.userService.getAllUsers());
 
     }
+
+    // ONLY ADMIN CAN ACCESS DELETE API
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser (@PathVariable("userId") Integer userId )
     {
