@@ -20,12 +20,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableGlobalMethodSecurity(prePostEnabled = true) //Implemented to perform user role based api access hasRole
 public class SecurityConfig
         extends WebSecurityConfigurerAdapter {
+
+    public static final String [] PUBLIC_URL = {"/api/v1/auth/**",
+            "/v3/api-docs/**", //http://localhost:9090/v3/api-docs
+            "/v2/api-docs/**",
+            "/swagger-ui/**", //http://localhost:9090/swagger-ui/index.html
+            "/swagger-resources/**",
+            "/webjars/**"
+    };
     @Autowired
     private CustomUserDtlService customUserDtlService;
 
@@ -40,7 +50,7 @@ public class SecurityConfig
                 .disable()
                 .authorizeRequests()
 //                        .antMatchers("/api/v1/auth/login").permitAll()
-                        .antMatchers("/api/v1/auth/**").permitAll() // Allow all api after api/v1/auth
+                        .antMatchers(PUBLIC_URL).permitAll() // Allow all api after api/v1/auth , // Swagger ui url permitted
                         .antMatchers(HttpMethod.GET).permitAll() //Allow all get api without any security
                 .anyRequest()
                 .authenticated()
