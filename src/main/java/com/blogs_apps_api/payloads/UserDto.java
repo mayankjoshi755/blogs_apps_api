@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserDto {
 
-    private int Id;
+    private int Id; // this is used to update records only.
     @NotEmpty
     @Size(min = 4 , message = "User name must me greater than 4 characters.")
     private String name;
@@ -29,6 +29,6 @@ public class UserDto {
     @NotNull
     private String about;
 
-    private Set<RoleDto> roles = new HashSet<>();
+//    private Set<RoleDto> roles = new HashSet<>();
 
 }
