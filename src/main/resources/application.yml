@@ -1,0 +1,7 @@
+server:
+  ssl:
+    key-alias: blogging
+    key-store: classpath:blogging1.jks
+    key-store-type: JKS
+    key-password: password
+    key-store-password: password

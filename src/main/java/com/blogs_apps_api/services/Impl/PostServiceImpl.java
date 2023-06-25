@@ -136,14 +136,6 @@ public class PostServiceImpl  implements PostsService {
       List<PostsDto> postsDtoList = posts.stream().map(p -> this.modelMapper.map(p , PostsDto.class)).collect(Collectors.toList());
         return postsDtoList;
     }
-    @Override
-    public List<PostsDto> searchPosts(String keyword) {
-
-//        List<Post> posts = this.postsRepo.searchByContent ("%" + keyword + "%");
-//        List<PostsDto> postsDtoList = posts.stream().map(p -> this.modelMapper.map(p , PostsDto.class)).collect(Collectors.toList());
-//        return postsDtoList;
-        return null;
-    }
 
 
 }

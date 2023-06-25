@@ -1,6 +1,7 @@
 package com.blogs_apps_api.contoller;
 
 import com.blogs_apps_api.payloads.ApiResponse;
+import com.blogs_apps_api.payloads.RoleDto;
 import com.blogs_apps_api.payloads.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,6 +55,14 @@ public class UserController {
     {
         this.userService.deleteUser(userId);
         return new ResponseEntity<>(new ApiResponse("user deleted successfully" , false), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateRole")
+    public ResponseEntity<String> updateRole(@RequestBody RoleDto roleDto)
+    {
+        this.userService.updateUserRole(roleDto);
+
+        return new ResponseEntity<>("User role updated",HttpStatus.OK);
     }
 
 }

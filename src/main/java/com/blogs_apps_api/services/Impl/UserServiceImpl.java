@@ -4,16 +4,19 @@ import com.blogs_apps_api.config.AppConstants;
 import com.blogs_apps_api.entities.Role;
 import com.blogs_apps_api.entities.User;
 import com.blogs_apps_api.globalExceptions.ResourceNotFoundException;
+import com.blogs_apps_api.payloads.RoleDto;
 import com.blogs_apps_api.payloads.UserDto;
 import com.blogs_apps_api.repositories.RoleRepo;
 import com.blogs_apps_api.repositories.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.blogs_apps_api.services.UserService;
 
+import javax.swing.tree.RowMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +32,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleRepo roleRepo;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @Override
     public UserDto registerUser(UserDto userDto) {
@@ -91,10 +96,19 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public void  updateUserRole(RoleDto roleDto) {
+
+        String stmt = "update user_role set role = ? where user = ?";
+
+       jdbcTemplate.update(stmt,roleDto.getRole(),roleDto.getId());
+
+    }
+
 
     public User dtoToUser(UserDto userDto)
     {
-        User user = this.modelMapper.map(userDto, User.class);  // Moidel mapper coverts automatically userDto object to User class object just like below commented code.
+        User user = this.modelMapper.map(userDto, User.class);  // Model mapper coverts automatically userDto object to User class object just like below commented code.
 
         //        User user = new User();
         //        user.setId(userDto.getId());
