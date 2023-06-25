@@ -1,5 +1,6 @@
 package com.blogs_apps_api.services;
 
+import com.blogs_apps_api.payloads.RoleDto;
 import com.blogs_apps_api.payloads.UserDto;
 import org.springframework.http.ResponseEntity;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
+    UserDto registerUser(UserDto user);
     UserDto createUser(UserDto user);
 
     UserDto updateUser(UserDto user, Integer userId);
@@ -16,4 +18,6 @@ public interface UserService {
     List<UserDto> getAllUsers();
 
     void deleteUser(Integer userId);
+
+   void updateUserRole(RoleDto roleDto);
 }
