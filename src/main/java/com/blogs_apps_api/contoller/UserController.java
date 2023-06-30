@@ -57,6 +57,7 @@ public class UserController {
         return new ResponseEntity<>(new ApiResponse("user deleted successfully" , false), HttpStatus.OK);
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateRole")
     public ResponseEntity<String> updateRole(@RequestBody RoleDto roleDto)
     {

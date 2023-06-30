@@ -3,6 +3,7 @@ package com.blogs_apps_api;
 import com.blogs_apps_api.config.AppConstants;
 import com.blogs_apps_api.entities.Role;
 import com.blogs_apps_api.repositories.RoleRepo;
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
+@EnableEncryptableProperties
 public class BlogsAppsApiApplication implements CommandLineRunner {
 	@Autowired
 	private PasswordEncoder passwordEncoder;

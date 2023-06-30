@@ -34,7 +34,8 @@ public class SecurityConfig
             "/v2/api-docs/**",
             "/swagger-ui/**", //http://localhost:9090/swagger-ui/index.html
             "/swagger-resources/**",
-            "/webjars/**"
+            "/webjars/**",
+            "/users/updateRole/**"
     };
     @Autowired
     private CustomUserDtlService customUserDtlService;
